@@ -3,9 +3,11 @@
     using GitHub.Models;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class GigFormViewModel
     {
+        [Required]
         public string Venue { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
