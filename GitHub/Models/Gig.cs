@@ -1,13 +1,12 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace GitHub.Models
+﻿namespace GitHub.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class Gig
     {
         public int Id { get; set; }
 
-        
         public ApplicationUser Artist { get; set; }
 
         [Required]
@@ -19,7 +18,6 @@ namespace GitHub.Models
         [StringLength(255)]
         public string Venue { get; set; }
 
-        
         public Genre Genre { get; set; }
 
         [Required]
