@@ -15,6 +15,17 @@
             _context = new ApplicationDbContext();
         }
 
+        [Authorize]
+        public ActionResult Attending()
+        {
+            var userId = User.Identity.GetUserId();
+            var gigs = _context.Attendances
+                .Where(a => a.AttendeeId == userId)
+                .Select(a=>a.Gig).ToList();
+
+            return View(gigs);
+        }
+
         // GET: Gigs
         [Authorize]
         public ActionResult Create()
