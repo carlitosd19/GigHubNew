@@ -1,11 +1,15 @@
 ﻿namespace GitHub.Models
 {
     using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
 
     public class Gig
     {
         public int Id { get; set; }
+
+        public bool IsCanceled { get; private set; }
 
         public ApplicationUser Artist { get; set; }
 
@@ -22,5 +26,12 @@
 
         [Required]
         public byte GenreId { get; set; }
+
+        public ICollection<Attendance> Attendances { get; private set; }
+
+        public Gig()
+        {
+            Attendances = new Collection<Attendance>();
+        }
     }
 }

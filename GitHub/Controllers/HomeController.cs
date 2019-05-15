@@ -1,8 +1,8 @@
 ﻿namespace GitHub.Controllers
 {
     using GitHub.Models;
+    using GitHub.ViewModels;
     using System;
-    using System.Data.Entity;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -18,11 +18,18 @@
         public ActionResult Index()
         {
             var upcomingGigs = _context.Gigs
-                .Include(g => g.Artist)
-                .Include(g=>g.Genre)
-                .Where(g => g.DateTime > DateTime.Now);
+                 .Include("Artist")
+                 .Include("Genre")
+                 .Where(g => g.DateTime > DateTime.Now && g.IsCanceled == false);
 
-            return View(upcomingGigs);
+            var viewModel = new GigsViewModel
+            {
+                UpcomingGigs = upcomingGigs,
+                ShowActions  = User.Identity.IsAuthenticated,
+                Heading      = "Upcoming Gigs"
+            };
+
+            return View("Gigs",viewModel);
         }
 
         public ActionResult About()

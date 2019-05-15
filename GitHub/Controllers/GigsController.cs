@@ -3,16 +3,37 @@
     using GitHub.Models;
     using GitHub.ViewModels;
     using Microsoft.AspNet.Identity;
+    using System.Data.Entity;
     using System.Linq;
     using System.Web.Mvc;
 
     public class GigsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        
 
         public GigsController()
         {
             _context = new ApplicationDbContext();
+        }
+
+        [Authorize]
+        public ActionResult Attending() {
+            var userId = User.Identity.GetUserId();
+            var gigs = _context.Attendances
+                   .Where(a => a.AttendeeId == userId)
+                   .Select(a => a.Gig)
+                   .Include("Artist")
+                   .Include("Genre")
+                   .ToList();
+
+            var viewModel = new GigsViewModel()
+            {
+                UpcomingGigs = gigs,
+                ShowActions  = User.Identity.IsAuthenticated,
+                Heading      = "Gigs I'm Attenting"
+            };
+            return View("Gigs",viewModel);
         }
 
         // GET: Gigs

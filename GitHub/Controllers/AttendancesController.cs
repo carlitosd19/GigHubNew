@@ -10,8 +10,9 @@
     [Authorize]
     public class AttendancesController : ApiController
     {
-        private readonly ApplicationDbContext _context;
-        private int gigId;
+        private ApplicationDbContext _context;
+
+        //private int gigId;
 
         public AttendancesController()
         {
