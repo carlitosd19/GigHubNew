@@ -17,10 +17,10 @@
             _context = new ApplicationDbContext();
         }
 
-        public ActionResult Mine()
-        {
+        //public ActionResult Mine()
+        //{
 
-        }
+        //}
 
 
         [Authorize]
