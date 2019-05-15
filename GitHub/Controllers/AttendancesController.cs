@@ -7,7 +7,7 @@
     using System.Web.Http;
 
 
-    [Authorize]
+    //[Authorize]
     public class AttendancesController : ApiController
     {
         private ApplicationDbContext _context;
