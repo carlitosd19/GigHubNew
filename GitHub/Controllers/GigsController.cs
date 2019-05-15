@@ -10,30 +10,37 @@
     public class GigsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        
+
 
         public GigsController()
         {
             _context = new ApplicationDbContext();
         }
 
+        public ActionResult Mine()
+        {
+
+        }
+
+
         [Authorize]
-        public ActionResult Attending() {
+        public ActionResult Attending()
+        {
             var userId = User.Identity.GetUserId();
             var gigs = _context.Attendances
-                   .Where(a => a.AttendeeId == userId)
-                   .Select(a => a.Gig)
-                   .Include("Artist")
-                   .Include("Genre")
-                   .ToList();
+                    .Where(a => a.AttendeeId == userId)
+                    .Select(a => a.Gig)
+                    .Include("Artist")
+                    .Include("Genre")
+                    .ToList();
 
             var viewModel = new GigsViewModel()
             {
                 UpcomingGigs = gigs,
-                ShowActions  = User.Identity.IsAuthenticated,
-                Heading      = "Gigs I'm Attenting"
+                ShowActions = User.Identity.IsAuthenticated,
+                Heading = "Gigs I'm Attenting"
             };
-            return View("Gigs",viewModel);
+            return View("Gigs", viewModel);
         }
 
         // GET: Gigs
@@ -62,8 +69,8 @@
             {
                 ArtistId = User.Identity.GetUserId(),
                 DateTime = viewModel.GetDateTime(),
-                GenreId  = viewModel.Genre,
-                Venue    = viewModel.Venue
+                GenreId = viewModel.Genre,
+                Venue = viewModel.Venue
             };
             _context.Gigs.Add(gig);
             _context.SaveChanges();
