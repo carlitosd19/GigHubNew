@@ -3,6 +3,7 @@
     using GitHub.Models;
     using GitHub.ViewModels;
     using Microsoft.AspNet.Identity;
+    using System;
     using System.Data.Entity;
     using System.Linq;
     using System.Web.Mvc;
@@ -17,10 +18,17 @@
             _context = new ApplicationDbContext();
         }
 
-        //public ActionResult Mine()
-        //{
+        [Authorize]
+        public ActionResult Mine()
+        {
+            var userId = User.Identity.GetUserId();
+            var gigs = _context.Gigs
+                .Where(g => g.ArtistId == userId && g.DateTime > DateTime.Now)
+                .Include(g=>g.Genre)
+                .ToList();
 
-        //}
+            return View(gigs);
+        }
 
 
         [Authorize]
@@ -69,12 +77,12 @@
             {
                 ArtistId = User.Identity.GetUserId(),
                 DateTime = viewModel.GetDateTime(),
-                GenreId = viewModel.Genre,
-                Venue = viewModel.Venue
+                GenreId  = viewModel.Genre,
+                Venue    = viewModel.Venue
             };
             _context.Gigs.Add(gig);
             _context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine", "Gigs");
         }
     }
 }
