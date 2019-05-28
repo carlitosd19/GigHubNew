@@ -9,7 +9,7 @@
     {
         public int Id { get; set; }
 
-        public bool IsCanceled { get; private set; }
+        public bool IsCanceled { get; set; }
 
         public ApplicationUser Artist { get; set; }
 

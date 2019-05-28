@@ -23,9 +23,9 @@ textarea {
     max-width: 280px;
 }
 
-span.field-validation-error{
-    color:rgb(255, 0, 0);
-    font-weight:bold;
+span.field-validation-error {
+    color: red;
+    font-weight: bold;
 }
 
 .voffset  { margin-top:2px;  }
@@ -36,32 +36,53 @@ span.field-validation-error{
 .voffset5 { margin-top: 80px; }
 
 /* Bootstrap Overrides*/
-.navbar-inverse {
-    background-color:#ff4342;
-    border-color:#ff4342;
-}
-.navbar-inverse .navbar-nav > li > a {
-    color:#fff;
-}
-.navbar-inverse .navbar-brand{
-    color:#fff;
+.popover {
+    box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-    color: #fff;
-    background-color: rgba(205,40,39,0.55);
+.navbar-inverse {
+    background-color: #ff4342;
+    border-color: #ff4342;
 }
-.dropdown-menu{
-    box-shadow:none;
-    -webkit-box-shadow:none;
+
+.navbar-inverse .navbar-nav > li > a {
+color: #fff;
+}
+
+.navbar-inverse .navbar-brand {
+color: #fff;
+}
+
+.navbar-inverse .notifications {
+position: relative;
+}
+
+.navbar-inverse .notifications .badge {
+    position: absolute;
+    top: 8px;
+    right: -1px;
+    background: #a80a0a;
+}
+
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+background-color: rgba(205, 40, 39, 0.55);
+}
+
+.dropdown-menu {
+    box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
 .navbar-inverse .navbar-nav > .dropdown > a .caret {
-    border-top-color:#fff;
-    border-bottom-color:#fff;
+    border-top-color: #fff;
+    border-bottom-color: #fff;
 }
+
 .navbar-brand {
-    font-weight:700;
+    font-weight: 700;
 }
 
 
@@ -91,7 +112,8 @@ h6,
 }
 .form-control{
     font-size        :17px;
-    padding          :20px 15px;
+    height:44px;
+    /*padding          :20px 15px;*/
     -ms-border-radius:9px;
     border-radius    :9px;
 }
@@ -154,5 +176,12 @@ h6,
 }
 
 .gigs > li .details .genre {
-    font-size:14px;
+    font-size: 15px;
+}
+.gigs > li .actions {
+    font-size:15px;
+    display:none;
+}
+.gigs > li:hover .actions {
+    display:block;
 }
