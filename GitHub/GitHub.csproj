@@ -176,9 +176,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\GigsController.cs" />
-    <Compile Include="Controllers\FollowingsController.cs" />
+    <Compile Include="Controllers\Api\FollowingsController.cs" />
     <Compile Include="Dtos\AttendanceDto.cs" />
-    <Compile Include="Controllers\AttendancesController.cs" />
+    <Compile Include="Controllers\Api\AttendancesController.cs" />
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -226,11 +226,18 @@
     <Compile Include="Migrations\201905272150417_AddisCanceledToGig.Designer.cs">
       <DependentUpon>201905272150417_AddisCanceledToGig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905280325100_AddNotification.cs" />
+    <Compile Include="Migrations\201905280325100_AddNotification.Designer.cs">
+      <DependentUpon>201905280325100_AddNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\ExternalLoginListViewModel.cs" />
     <Compile Include="Models\Following.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationType.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\ForgotViewModel.cs" />
@@ -408,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905272150417_AddisCanceledToGig.resx">
       <DependentUpon>201905272150417_AddisCanceledToGig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905280325100_AddNotification.resx">
+      <DependentUpon>201905280325100_AddNotification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
