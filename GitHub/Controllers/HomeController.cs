@@ -20,7 +20,7 @@
             var upcomingGigs = _context.Gigs
                  .Include("Artist")
                  .Include("Genre")
-                 .Where(g => g.DateTime > DateTime.Now && g.IsCanceled == false);
+                 .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled);
 
             var viewModel = new GigsViewModel
             {
