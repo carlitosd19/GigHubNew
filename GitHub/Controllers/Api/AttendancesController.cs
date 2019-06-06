@@ -1,18 +1,15 @@
 ﻿namespace GitHub.Controllers.Api
 {
-    using GitHub.Dtos;
+    using GigHub.Dtos;
     using GitHub.Models;
     using Microsoft.AspNet.Identity;
     using System.Linq;
     using System.Web.Http;
 
-
-    //[Authorize]
+    [Authorize]
     public class AttendancesController : ApiController
     {
         private ApplicationDbContext _context;
-
-        //private int gigId;
 
         public AttendancesController()
         {
@@ -25,12 +22,12 @@
             var userId = User.Identity.GetUserId();
 
             if (_context.Attendances.Any(a => a.AttendeeId == userId && a.GigId == dto.GigId))
-                return BadRequest("The Attendance already exists");
-            
+                return BadRequest("The attendance already exists.");
+
             var attendance = new Attendance
             {
                 GigId = dto.GigId,
-                AttendeeId = User.Identity.GetUserId()
+                AttendeeId = userId
             };
             _context.Attendances.Add(attendance);
             _context.SaveChanges();

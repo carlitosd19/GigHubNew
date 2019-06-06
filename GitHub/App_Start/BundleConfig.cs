@@ -4,11 +4,16 @@ namespace GitHub
 {
     public class BundleConfig
     {
+        private const string VirtualPathCSS = "~/Content/css";
+        private const string VirtualPathBootstrap = "~/bundles/bootstrap";
+
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/underscore-min.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -18,15 +23,16 @@ namespace GitHub
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            bundles.Add(new ScriptBundle(VirtualPathBootstrap).Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/bootbox.min.js",
                       "~/Scripts/respond.min.js"
                       ));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle(VirtualPathCSS).Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/animate.css"));
         }
     }
 }

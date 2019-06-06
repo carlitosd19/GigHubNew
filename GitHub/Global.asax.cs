@@ -1,5 +1,7 @@
 ﻿namespace GitHub
 {
+    using AutoMapper;
+    using GitHub.App_Start;
     using System.Web.Http;
     using System.Web.Mvc;
     using System.Web.Optimization;
@@ -9,6 +11,7 @@
     {
         protected void Application_Start()
         {
+            Mapper.Initialize(c => c.AddProfile<MappingProfile>());
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>My Upcoming Gigs</h2>
-<ul class="gigs voffset5">
+<ul class="gigs voffset4">
     @foreach (var gig in Model)
     {
         <li>
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="details">
-                <span class="venue">
+                <span class="artist">
                     @gig.Venue
                 </span>
                 <span class="genre">
@@ -26,8 +26,7 @@
                 <div class="actions">
                     <a href="@Url.Action("Edit", "Gigs", new { id = gig.Id })">
                         Edit
-                    </a>
-                    |
+                    </a> |
                     <a href="#" class="js-cancel-gig" data-gig-id="@gig.Id">
                         Cancel
                     </a>
@@ -38,7 +37,8 @@
 </ul>
 @section scripts
 {
-    <script>$(document).ready(function () {
+    <script>
+        $(document).ready(function () {
             $(".js-cancel-gig").click(function (e) {
                 var link = $(e.target);
 
@@ -48,14 +48,14 @@
                     buttons: {
                         no: {
                             label: "No",
-                            className: 'btn-default',
-                            callback: function () {
+                            className: "btn-default",
+                            callback: function (e) {
                                 bootbox.hideAll();
                             }
                         },
                         yes: {
                             label: "Yes",
-                            className: 'btn-danger',
+                            className: "btn-danger",
                             callback: function () {
                                 $.ajax({
                                     url: "/api/gigs/" + link.attr("data-gig-id"),
@@ -63,34 +63,18 @@
                                 })
                                 .done(function () {
                                     link.parents("li").fadeOut(function () {
-                                        $(this).remove(); //  remove link.parents(li) (doesn't actually delete the gig)
+                                        $(this).remove();
                                     });
                                 })
-                                .fail(function () {
+                                    .fail(function (e) {
+                                        debugger;
                                     alert("Something failed!");
-                                })
+                                });
                             }
                         }
                     }
-
                 });
-                /*//  bootbox.confirm doesn't allow you to change settings.
-                //  use bootbox.dialog for custom settings
-                bootbox.confirm("Are you sure you want to cancel this gig?", function (result) {
-                    $.ajax({
-                        url: "/api/gigs/" + link.attr("data-gig-id"),
-                        method: "DELETE"
-                    })
-                    .done(function () {
-                        link.parents("li").fadeOut(function () {
-                            $(this).remove(); //  remove link.parents(li)
-                        });
-                    })
-                    .fail(function () {
-                        alert("Something failed!");
-                    })
-                });
-                */
             });
-        });</script>
+        });
+    </script>
 }

@@ -18,18 +18,18 @@
         public ActionResult Index()
         {
             var upcomingGigs = _context.Gigs
-                 .Include("Artist")
-                 .Include("Genre")
-                 .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled);
+                .Include("Artist")
+                .Include("Genre")
+                .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled);
 
             var viewModel = new GigsViewModel
             {
                 UpcomingGigs = upcomingGigs,
-                ShowActions  = User.Identity.IsAuthenticated,
-                Heading      = "Upcoming Gigs"
+                ShowActions = User.Identity.IsAuthenticated,
+                Heading = "Upcoming Gigs"
             };
 
-            return View("Gigs",viewModel);
+            return View("Gigs", viewModel);
         }
 
         public ActionResult About()

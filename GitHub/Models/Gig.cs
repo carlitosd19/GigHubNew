@@ -39,20 +39,21 @@
         {
             IsCanceled = true;
 
-            var notification = Notification.GigCancel(this);
+            var notification = Notification.GigCanceled(this);
 
             foreach (var attendee in Attendances.Select(a => a.Attendee))
             {
                 attendee.Notify(notification);
             }
         }
-        public void Modify(DateTime dateTime, string venue,byte genre)
-        {
-            var notification = Notification.GigUpdated(this,DateTime,Venue);
 
-            Venue    = venue;
+        public void Modify(DateTime dateTime, string venue, byte genre)
+        {
+            var notification = Notification.GigUpdated(this, DateTime, Venue);
+
+            Venue = venue;
             DateTime = dateTime;
-            GenreId  = genre;
+            GenreId = genre;
 
             foreach (var attendee in Attendances.Select(a => a.Attendee))
                 attendee.Notify(notification);

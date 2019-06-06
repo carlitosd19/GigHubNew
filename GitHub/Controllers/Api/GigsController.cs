@@ -9,7 +9,7 @@
     [Authorize]
     public class GigsController : ApiController
     {
-        private readonly ApplicationDbContext _context;
+        private ApplicationDbContext _context;
 
         public GigsController()
         {
@@ -20,16 +20,17 @@
         public IHttpActionResult Cancel(int id)
         {
             var userId = User.Identity.GetUserId();
-            //eager loading
             var gig = _context.Gigs
-                .Include(g => g.Attendances.Select(a=>a.Attendee))
+                .Include(g => g.Attendances.Select(a => a.Attendee))
                 .Single(g => g.Id == id && g.ArtistId == userId);
 
             if (gig.IsCanceled)
                 return NotFound();
 
             gig.Cancel();
+
             _context.SaveChanges();
+
             return Ok();
         }
     }
