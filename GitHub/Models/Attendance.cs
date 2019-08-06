@@ -9,7 +9,7 @@
         public ApplicationUser Attendee { get; set; }
 
         [Key]
-        [Column(Order=1)]
+        [Column(Order = 1)]
         public int GigId { get; set; }
 
         [Key]

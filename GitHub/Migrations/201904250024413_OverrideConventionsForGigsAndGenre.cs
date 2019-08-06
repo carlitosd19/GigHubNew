@@ -19,7 +19,7 @@ namespace GitHub.Migrations
             AddForeignKey("dbo.Gigs", "Artist_Id", "dbo.AspNetUsers", "Id", cascadeDelete: true);
             AddForeignKey("dbo.Gigs", "Genre_Id", "dbo.Genres", "Id", cascadeDelete: true);
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.Gigs", "Genre_Id", "dbo.Genres");

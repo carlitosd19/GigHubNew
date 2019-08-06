@@ -43,7 +43,7 @@
 
             modelBuilder.Entity<UserNotification>()
                 .HasRequired(n => n.User)
-                .WithMany(u=>u.UserNotifications)
+                .WithMany(u => u.UserNotifications)
                 .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);

@@ -7,7 +7,7 @@ namespace GitHub.Models
     public class UserNotification
     {
         [Key]
-        [Column(Order =1)]
+        [Column(Order = 1)]
         public string UserId { get; set; }
 
         [Key]
@@ -30,12 +30,12 @@ namespace GitHub.Models
             if (user == null)
                 throw new ArgumentNullException("user");
 
-            if (notification==null)
+            if (notification == null)
                 throw new ArgumentNullException("notification");
 
             User = user;
             Notification = notification;
-            
+
         }
     }
 }

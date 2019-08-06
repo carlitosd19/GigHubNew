@@ -31,20 +31,22 @@
         public string Heading { get; set; }
         public string Action
         {
-            get {
+            get
+            {
 
-                Expression<Func<GigsController, ActionResult>> update = 
+                Expression<Func<GigsController, ActionResult>> update =
                     (c => c.Update(this));
-                Expression<Func<GigsController, ActionResult>> create = 
+                Expression<Func<GigsController, ActionResult>> create =
                     (c => c.Create(this));
 
                 var action = (Id != 0) ? update : create;
-                return  (action.Body as MethodCallExpression).Method.Name;
+                return (action.Body as MethodCallExpression).Method.Name;
             }
         }
 
-        public DateTime GetDateTime() {            
-           return DateTime.Parse(string.Format("{0} {1}", Date, Time));            
+        public DateTime GetDateTime()
+        {
+            return DateTime.Parse(string.Format("{0} {1}", Date, Time));
         }
     }
 }
