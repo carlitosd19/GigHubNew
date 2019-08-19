@@ -39,6 +39,7 @@
     </div>
 
     @Scripts.Render("~/bundles/lib")
+    @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)
 
     <script type="text/x-template" id="notifications-template">
@@ -55,15 +56,15 @@
             newValues = [];
 
             if (notification.originalVenue != notification.gig.venue) {
-                changes.push('venue');
-                originalValues.push(notification.originalVenue);
-                newValues.push(notification.gig.venue);
+            changes.push('venue');
+            originalValues.push(notification.originalVenue);
+            newValues.push(notification.gig.venue);
             }
 
             if (notification.originalDateTime != notification.gig.dateTime) {
-                changes.push('date/time');
-                originalValues.push(moment(notification.originalDateTime).format("D MMM HH:mm"));
-                newValues.push(moment(notification.gig.dateTime).format("D MMM HH:mm"));
+            changes.push('date/time');
+            originalValues.push(moment(notification.originalDateTime).format("D MMM HH:mm"));
+            newValues.push(moment(notification.gig.dateTime).format("D MMM HH:mm"));
             }
 
             %>
